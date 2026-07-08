@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "automl-data-service"
+version = "0.1.0"
+description = "Dataset registry microservice for the AutoML pipeline. Uploads/fetches datasets, stores metadata in Postgres, CSVs on disk."
+requires-python = ">=3.11"
+dependencies = [
+    "automl-reusables @ git+https://github.com/Major-Proj-AutoML/automl-reusables.git@main",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy>=2.0",
+    "psycopg2-binary>=2.9",
+    "python-multipart>=0.0.9",
+    "pydantic-settings>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
