@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Dataset registry microservice for the AutoML pipeline. Uploads/fetches datasets, stores metadata in Postgres, CSVs on disk."
 requires-python = ">=3.11"
 dependencies = [
-    "automl-reusables @ git+https://github.com/Major-Proj-AutoML/automl-reusables.git@main",
+    "automl-reusables @ git+https://github.com/Major-Proj-AutoML/automl-reusables.git@v0.1.0",
     "fastapi>=0.115",
     "uvicorn[standard]>=0.30",
     "sqlalchemy>=2.0",
