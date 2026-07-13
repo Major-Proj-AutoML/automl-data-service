@@ -78,3 +78,5 @@ def test_openml_catalog_lists_known_ids(client):
     catalog = r.json()
     assert "37" in catalog
     assert catalog["37"] == "diabetes"
+    assert "41211" in catalog
+    assert catalog["41211"] == "ames_housing"

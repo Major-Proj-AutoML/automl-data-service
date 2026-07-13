@@ -107,5 +107,5 @@ def delete_one(
 
 @app.get("/datasets/openml/catalog")
 def openml_catalog() -> dict[int, str]:
-    """The 28 OpenML CC18 datasets pre-registered in automl-reusables."""
+    """OpenML datasets pre-registered in automl-reusables (28 CC18 classification + Ames Housing regression)."""
     return known_openml_ids()

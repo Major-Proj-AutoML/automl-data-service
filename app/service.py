@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 
 from src.experiments.datasets import (
     SELECTED_CLASSIFICATION,
+    SELECTED_REGRESSION,
     _detect_task_type,
     _drop_id_columns,
     load_custom_dataset,
@@ -161,4 +162,4 @@ def preview_dataset(
 
 
 def known_openml_ids() -> dict[int, str]:
-    return dict(SELECTED_CLASSIFICATION)
+    return {**SELECTED_CLASSIFICATION, **SELECTED_REGRESSION}

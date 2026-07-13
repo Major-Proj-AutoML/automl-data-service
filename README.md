@@ -5,7 +5,7 @@ Dataset registry microservice for the AutoML pipeline. Port **8001**.
 ## Responsibilities
 
 - Accept custom CSV uploads → validate → split → cache CSV files → register in Postgres.
-- Import OpenML datasets by ID (uses the 28 CC18 catalogue from `automl-reusables`).
+- Import OpenML datasets by ID (uses the CC18 classification catalogue + Ames Housing regression from `automl-reusables`).
 - List / fetch / delete registered datasets.
 - Serve dataset previews (first N rows).
 
@@ -20,7 +20,7 @@ Dataset registry microservice for the AutoML pipeline. Port **8001**.
 | GET | `/datasets/{id}` | Fetch a dataset's metadata |
 | GET | `/datasets/{id}/preview` | First N rows of train or test split |
 | DELETE | `/datasets/{id}` | Unregister (optionally `?wipe_files=true`) |
-| GET | `/datasets/openml/catalog` | The 28 OpenML CC18 ids known to the pipeline |
+| GET | `/datasets/openml/catalog` | OpenML ids known to the pipeline (28 CC18 classification + Ames Housing regression) |
 
 Interactive docs at `http://localhost:8001/docs`.
 
