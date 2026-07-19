@@ -28,10 +28,28 @@ from app.config import settings
 from app.models import Dataset
 
 
+_STABLE_ROOT = Path("/opt/automl-reusables/data/experiments/stable")
+
+
 def _data_root() -> Path:
     root = Path(settings.data_root).resolve()
     root.mkdir(parents=True, exist_ok=True)
     return root
+
+
+def _relocate_to_stable(dataset: Dataset) -> None:
+    """Move a dataset's CSVs into stable/<id>/ so paths survive host moves."""
+    dest_dir = _STABLE_ROOT / str(dataset.id)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for attr, fname in (("train_path", "train.csv"), ("test_path", "test.csv")):
+        src = Path(getattr(dataset, attr))
+        dst = dest_dir / fname
+        if src.resolve() == dst.resolve():
+            continue
+        if not src.exists():
+            continue
+        shutil.copyfile(src, dst)
+        setattr(dataset, attr, str(dst))
 
 
 def upload_csv(
@@ -80,6 +98,9 @@ def upload_csv(
     session.add(dataset)
     session.commit()
     session.refresh(dataset)
+    _relocate_to_stable(dataset)
+    session.commit()
+    session.refresh(dataset)
     return dataset
 
 
@@ -111,6 +132,9 @@ def import_openml(
         n_cols=int(info["df_train"].shape[1]),
     )
     session.add(dataset)
+    session.commit()
+    session.refresh(dataset)
+    _relocate_to_stable(dataset)
     session.commit()
     session.refresh(dataset)
     return dataset
