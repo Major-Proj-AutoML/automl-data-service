@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# Copyright 2026 The VESIT AutoML Project contributors
+
 """Pytest fixtures for the data-service tests.
 
 Uses SQLite in-memory instead of Postgres so tests run without any external

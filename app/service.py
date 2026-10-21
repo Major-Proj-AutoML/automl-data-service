@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# Copyright 2026 The VESIT AutoML Project contributors
+
 """Business logic for the data-service.
 
 Thin wrapper over ``src.experiments.datasets`` from automl-reusables. Registers
